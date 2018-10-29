@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d241b34d0b8448b387e19dc4fa3af297" Name="Diagram1">
+        <EntityTypeShape EntityType="DealModel.Deal_Cliente" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DealModel.Deal_ClienteEmail" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DealModel.Deal_ClienteEndereco" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DealModel.Deal_ClienteSocio" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DealModel.Deal_ClienteTelefone" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="DealModel.FK_Deal_ClienteEmail_Deal_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="DealModel.FK_Deal_ClienteEndereco_Deal_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="DealModel.FK_Deal_ClienteSocio_Deal_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="DealModel.FK_Deal_ClienteTelefone_Deal_Cliente" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

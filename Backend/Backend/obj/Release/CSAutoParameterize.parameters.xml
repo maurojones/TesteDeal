@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DBEntities-Web.config Connection String" description="DBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Service.Database.ModelDatabase.csdl|res://*/Service.Database.ModelDatabase.ssdl|res://*/Service.Database.ModelDatabase.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=petveter.database.windows.net;initial catalog=petveter;persist security info=True;user id=stormti;password=@M4ur0j0n3s@;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\StormTI\\TesteDeal\\Backend\\Backend\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DBEntities']/@connectionString" />
+  </parameter>
+</parameters>

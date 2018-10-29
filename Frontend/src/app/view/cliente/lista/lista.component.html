@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>CNPJ</th>
+      <th>Nome</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listaClientes">
+      <td>{{ item.CNPJ | CnpjPipe }}</td>
+      <td>{{ item.Nome }}</td>
+      <td>
+        <a [routerLink]="['/cliente/alterar', item.Id]">alterar</a>
+      </td>
+      <td>
+        <a href="javascript:void(0)" (click)="excluirClinic(item.Id, item.Nome)">excluir</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,137 @@
+<div class="row">
+  <form [formGroup]="_form" (ngSubmit)="onSubmit()" class="col s6" *ngIf="_form != undefined">
+    <div class="row">
+      <div clas="col s12">
+        <b>Dados do cliente</b>
+      </div>
+      <div class="input-field col s4">
+        <input id="CNPJ" type="text" formControlName="CNPJ" mask="00.000.000/0000-00">
+        <label class="active">CNPJ</label>
+      </div>
+      <div class="input-field col s8">
+        <input id="Nome" type="text" formControlName="Nome">
+        <label class="active">Nome</label>
+      </div>
+    </div>
+
+    <hr />
+    <div formArrayName="Deal_ClienteEmail" class="row">
+      <div clas="col s12">
+        <b>Emails do cliente</b>
+      </div>
+      <div *ngFor="let email of _form.get('Deal_ClienteEmail')['controls']; let i=index" [formGroupName]="i">
+        <div class="input-field col s10">
+          <label class="active">Email</label>
+          <input id="Email" type="email" formControlName="Email">
+        </div>
+        <div class="input-field col s2">
+          <button type="button" class="btn waves-effect waves-light red" (click)="removeRow('Deal_ClienteEmail', i)">Remover</button>
+        </div>
+      </div>
+      <div clas="col s12" style="text-align: right">
+        <button type="button" class="btn waves-effect waves-light" (click)="addEmail()">Adicionar Email</button>
+      </div>
+    </div>
+
+    <hr />
+    <div formArrayName="Deal_ClienteSocio" class="row">
+      <div clas="col s12">
+        <b>Sócios</b>
+      </div>
+      <div *ngFor="let socio of _form.get('Deal_ClienteSocio')['controls']; let i=index" [formGroupName]="i">
+        <div class="input-field col s4">
+          <label class="active">CPF</label>
+          <input id="CPF" type="text" formControlName="CPF" mask="000.000.000-00">
+        </div>
+        <div class="input-field col s6">
+          <label class="active">Nome</label>
+          <input id="Nome" type="text" formControlName="Nome" maxlength="150">
+        </div>
+        <div class="input-field col s2">
+          <button type="button" class="btn waves-effect waves-light red" (click)="removeRow('Deal_ClienteSocio', i)">Remover</button>
+        </div>
+      </div>
+      <div clas="col s12" style="text-align: right">
+        <button type="button" class="btn waves-effect waves-light" (click)="addSocio()">Adicionar Sócio</button>
+      </div>
+    </div>
+
+    <hr />
+    <div formArrayName="Deal_ClienteTelefone" class="row">
+      <div clas="col s12">
+        <b>Telefones</b>
+      </div>
+      <div *ngFor="let socio of _form.get('Deal_ClienteTelefone')['controls']; let i=index" [formGroupName]="i">
+        <div class="input-field col s3">
+          <select class="browser-default" formControlName="Tipo">
+            <option selected value="1">Celular</option>
+            <option value="2">Residencial</option>
+            <option value="3">Corporativo</option>
+          </select>
+        </div>
+        <div class="input-field col s3">
+          <label class="active">DDD</label>
+          <input id="DDD" type="text" formControlName="DDD" mask="00">
+        </div>
+        <div class="input-field col s4">
+          <label class="active">Número</label>
+          <input id="Numero" type="text" formControlName="Numero" mask="90000-0000">
+        </div>
+        <div class="input-field col s2">
+          <button type="button" class="btn waves-effect waves-light red" (click)="removeRow('Deal_ClienteTelefone', i)">Remover</button>
+        </div>
+      </div>
+      <div clas="col s12" style="text-align: right">
+        <button type="button" class="btn waves-effect waves-light" (click)="addTelefone()">Adicionar Telefone</button>
+      </div>
+    </div>
+
+    <hr />
+    <div formArrayName="Deal_ClienteEndereco" class="row">
+      <div *ngFor="let endereco of _form.get('Deal_ClienteEndereco')['controls']; let i=index" [formGroupName]="i">
+        <div clas="col s12">
+          <b>Endereço {{ i+1 }}</b>
+          &nbsp;&nbsp;&nbsp;
+          <button type="button" class="btn waves-effect waves-light red" (click)="removeRow('Deal_ClienteEndereco', i)">Remover</button>
+        </div>
+        <div class="input-field col s12">
+          <label class="active">CEP</label>
+          <input id="CEP" type="text" formControlName="CEP" mask="00.000-000" (change)="buscaEndereco(endereco)">
+        </div>
+        <div class="input-field col s9">
+          <label class="active">Logradouro</label>
+          <input id="Logradouro" type="text" formControlName="Logradouro" maxlength="150">
+        </div>
+        <div class="input-field col s3">
+          <label class="active">Número</label>
+          <input id="Numero" type="text" formControlName="Numero" maxlength="10">
+        </div>
+        <div class="input-field col s6">
+          <label class="active">Complemento</label>
+          <input id="Complemento" type="text" formControlName="Complemento" maxlength="50">
+        </div>
+        <div class="input-field col s6">
+          <label class="active">Bairro</label>
+          <input id="Bairro" type="text" formControlName="Bairro" maxlength="50">
+        </div>
+        <div class="input-field col s6">
+          <label class="active">Cidade</label>
+          <input id="Cidade" type="text" formControlName="Cidade" maxlength="50">
+        </div>
+        <div class="input-field col s6">
+          <label class="active">Estado</label>
+          <input id="Estado" type="text" formControlName="Estado" maxlength="2">
+        </div>
+        <div class="input-field col s12"> &nbsp; </div>
+      </div>
+      <div clas="col s12" style="text-align: right">
+        <button type="button" class="btn waves-effect waves-light" (click)="addEndereco()">Adicionar Endereço</button>
+      </div>
+    </div>
+
+    <hr />
+    <div clas="col s12" style="text-align: right">
+      <button type="submit" class="btn waves-effect waves-light">Salvar</button>
+    </div>
+  </form>
+</div>

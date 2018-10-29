@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("assets/css/loading.css");
+
+
+.validation {
+    color: red !important;
+}
+
+.ng-invalid.ng-touched:not(form):not(div) {
+    border-bottom: 2px solid red !important;
+}

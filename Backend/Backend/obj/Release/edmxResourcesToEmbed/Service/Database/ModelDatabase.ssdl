@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DealModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Deal_Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="CNPJ" Type="nvarchar" MaxLength="14" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_ClienteEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_ClienteEndereco">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Logradouro" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Complemento" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bairro" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_ClienteSocio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CPF" Type="nvarchar" MaxLength="11" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_ClienteTelefone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="DDD" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Deal_ClienteEmail_Deal_Cliente">
+    <End Role="Deal_Cliente" Type="Self.Deal_Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deal_ClienteEmail" Type="Self.Deal_ClienteEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal_Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deal_ClienteEmail">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_ClienteEndereco_Deal_Cliente">
+    <End Role="Deal_Cliente" Type="Self.Deal_Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deal_ClienteEndereco" Type="Self.Deal_ClienteEndereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal_Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deal_ClienteEndereco">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_ClienteSocio_Deal_Cliente">
+    <End Role="Deal_Cliente" Type="Self.Deal_Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deal_ClienteSocio" Type="Self.Deal_ClienteSocio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal_Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deal_ClienteSocio">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_ClienteTelefone_Deal_Cliente">
+    <End Role="Deal_Cliente" Type="Self.Deal_Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deal_ClienteTelefone" Type="Self.Deal_ClienteTelefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal_Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deal_ClienteTelefone">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DealModelStoreContainer">
+    <EntitySet Name="Deal_Cliente" EntityType="Self.Deal_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deal_ClienteEmail" EntityType="Self.Deal_ClienteEmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deal_ClienteEndereco" EntityType="Self.Deal_ClienteEndereco" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deal_ClienteSocio" EntityType="Self.Deal_ClienteSocio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deal_ClienteTelefone" EntityType="Self.Deal_ClienteTelefone" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Deal_ClienteEmail_Deal_Cliente" Association="Self.FK_Deal_ClienteEmail_Deal_Cliente">
+      <End Role="Deal_Cliente" EntitySet="Deal_Cliente" />
+      <End Role="Deal_ClienteEmail" EntitySet="Deal_ClienteEmail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_ClienteEndereco_Deal_Cliente" Association="Self.FK_Deal_ClienteEndereco_Deal_Cliente">
+      <End Role="Deal_Cliente" EntitySet="Deal_Cliente" />
+      <End Role="Deal_ClienteEndereco" EntitySet="Deal_ClienteEndereco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_ClienteSocio_Deal_Cliente" Association="Self.FK_Deal_ClienteSocio_Deal_Cliente">
+      <End Role="Deal_Cliente" EntitySet="Deal_Cliente" />
+      <End Role="Deal_ClienteSocio" EntitySet="Deal_ClienteSocio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_ClienteTelefone_Deal_Cliente" Association="Self.FK_Deal_ClienteTelefone_Deal_Cliente">
+      <End Role="Deal_Cliente" EntitySet="Deal_Cliente" />
+      <End Role="Deal_ClienteTelefone" EntitySet="Deal_ClienteTelefone" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
